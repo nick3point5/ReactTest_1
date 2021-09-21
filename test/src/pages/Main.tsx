@@ -1,7 +1,9 @@
 import React,{useEffect, useState} from 'react'
+import UserComponent from '../components/UserComponent'
+
 
 function Main() {
-	const [ userData, setUserData ] = useState()
+	const [ userData, setUserData ] = useState([])
 
 	function fetchData() {
 		fetch(`http://localhost:8081/api/users/`, {
@@ -24,7 +26,7 @@ function Main() {
 
 	return (
 		<div>
-			HomePage
+			<UserComponent  userData = {userData}/>
 		</div>
 	)
 }
