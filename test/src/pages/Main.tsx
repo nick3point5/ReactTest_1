@@ -1,11 +1,12 @@
 import React,{useEffect, useState} from 'react'
+import { withRouter } from "react-router";
 import UserComponent from '../components/UserComponent'
 
 
 function Main() {
-	const [ userData, setUserData ] = useState([])
+	const [ userDataAll, setUserDataAll ] = useState([])
 
-	function fetchData() {
+	function fetchDataAll() {
 		fetch(`http://localhost:8081/api/users/`, {
 			method: 'GET'
 		})
@@ -13,22 +14,19 @@ function Main() {
 				return res.json()
 		})
 		.then(res => {
-			setUserData(res)
+			setUserDataAll(res)
 		})
 	}
 
 	useEffect(() => {
-		fetchData()
-		return () => {
-			
-		}
+		fetchDataAll()
 	}, [])
 
 	return (
 		<div>
-			<UserComponent  userData = {userData}/>
+			<UserComponent  userData = {userDataAll}/>
 		</div>
 	)
 }
 
-export default Main
+export default withRouter(Main)
