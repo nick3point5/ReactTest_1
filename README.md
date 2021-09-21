@@ -171,3 +171,4 @@ repo directory to tech@shipyardapp.com or to the person who gave you the challen
 
 # Additional Dependencies
 react-router-dom
+@types/react-router-dom
