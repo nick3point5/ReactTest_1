@@ -1,7 +1,5 @@
 import React from 'react'
 import { Link } from 'react-router-dom';
-import ErrorMessageComponent from '../ErrorMessageComponent/ErrorMessageComponent';
-
 
 function UserDetails(props:any) {
 	const userData = props.userData

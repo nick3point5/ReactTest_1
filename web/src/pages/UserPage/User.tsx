@@ -2,8 +2,8 @@ import React from 'react'
 import { withRouter, useParams } from "react-router";
 import {useFetchUser} from '../../API/fetchRequests';
 import UserDetails from '../../components/UserDetails/UserDetails';
-import ErrorMessageComponent from '../../components/ErrorMessageComponent/ErrorMessageComponent';
-import LoadingComponent from '../../components/LoadingComponent/LoadingComponent';
+import ErrorMessage from '../../components/ErrorMessageComponent/ErrorMessage';
+import Loading from '../../components/LoadingComponent/Loading';
 
 interface Params {
 	id: string;
@@ -12,16 +12,19 @@ interface Params {
 function User() {
 	const params:Params = useParams()
 	const [userData, error, loading] = useFetchUser(params.id)
-	
-	if(!!error) return <ErrorMessageComponent message = {error}/>
+	let render
 
-	if (loading) {
-		return <LoadingComponent/>
+	if(!!error){
+		render = <ErrorMessage message = {error}/>
+	} else if (loading) {
+		render = <Loading/>
+	} else {
+		render = <UserDetails userData = {userData}/>
 	}
 
 	return (
-		<div className="">
-			<UserDetails userData = {userData}/>
+		<div className = 'view center'>
+			{render}
 		</div>
 	)
 }

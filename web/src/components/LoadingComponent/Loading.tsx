@@ -1,7 +1,7 @@
 import React from 'react'
 import loadingSpinner from '../../assets/Spinner-1s-200px.svg'
 
-function LoadingComponent() {
+function Loading() {
 	return (
 		<div>
 			<img src={loadingSpinner} alt='Loading'/>
@@ -9,4 +9,4 @@ function LoadingComponent() {
 	)
 }
 
-export default LoadingComponent
+export default Loading

@@ -1,7 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom';
 
-function UserComponent(props:any) {
+function UserTable(props:any) {
 	function mapUsers(users:any) {
 		const map = users.map((user:any) => {
 			return (
@@ -17,7 +17,7 @@ function UserComponent(props:any) {
 			)
 		})
 		return (
-			<table>
+			<table className = 'table'>
 				<tr>
 					<th>Email</th>
 					<th>First Name</th>
@@ -29,10 +29,10 @@ function UserComponent(props:any) {
 	}
 	
 	return (
-		<div>
+		<div className = 'table-container'>
 			{mapUsers(props.userDataAll)}
 		</div>
 	)
 }
 
-export default UserComponent
+export default UserTable
