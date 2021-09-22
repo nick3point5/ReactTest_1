@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 
 let userApiUrl:string
 
@@ -12,7 +12,7 @@ function generateFetch(initState:any,url:string) {
 	return ( params:string = '') => {
 		const [ data, setData ] = useState(initState)
 		const [ error, setError ] = useState()
-		const [ loading, setLoading ] = useState(true)
+		const loading = useRef(true)
 
 		function fetchData() {
 			fetch(`${url}${params}`, {
@@ -39,10 +39,10 @@ function generateFetch(initState:any,url:string) {
 		}, [])
 
 		useEffect(() => {
-			setLoading(false)
+			loading.current = false
 		}, [setData,setError])
 
-		return [data, error, loading]
+		return [data, error, loading.current]
 	}
 }
 

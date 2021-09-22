@@ -32,7 +32,11 @@ function UserTable(props:any) {
 			</table>
 		)
 	}
-	
+
+	if(props.userDataAll.length > 10) {
+		document.querySelector('.table-container')?.classList.add("overflow-scroll")
+	}
+
 	return (
 		<div className = 'table-container'>
 			{mapUsers(props.userDataAll)}

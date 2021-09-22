@@ -19,16 +19,16 @@ function UserDetails(props:any) {
 					{userData.email}
 				</h4>
 
-				<div>
-					favorite color : {userData.favorite_color}
-				</div>
-				<div>
+				<h5>
+					Favorite Color: {userData.favorite_color}
+				</h5>
+				<h5>
 					{
 						(userData.number_of_pets !== 1) 
 							? `${userData.number_of_pets} pets`
 							: `${userData.number_of_pets} pet`
 					}
-				</div>
+				</h5>
 				<div>
 					{userData.id}
 				</div>
