@@ -1,5 +1,5 @@
-import { message } from 'antd'
 import React from 'react'
+import './errorMessage.css'
 
 interface Message {
 	message: string;

@@ -1,4 +1,5 @@
 import React from 'react'
+import './user.css'
 import { withRouter, useParams } from "react-router";
 import {useFetchUser} from '../../API/fetchRequests';
 import UserDetails from '../../components/UserDetails/UserDetails';
@@ -28,5 +29,6 @@ function User() {
 		</div>
 	)
 }
+
 
 export default withRouter(User)

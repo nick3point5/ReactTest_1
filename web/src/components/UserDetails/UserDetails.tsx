@@ -1,32 +1,38 @@
-import React from 'react'
+import React, {useEffect} from 'react'
+import './userDetails.css'
 import { Link } from 'react-router-dom';
 
 function UserDetails(props:any) {
 	const userData = props.userData
-	return (
-		<div className="">
-			<div>
-				id : {userData.id}
-			</div>
-			<div>
-				email : {userData.email}
-			</div>
-			<div>
-				first name : {userData.first_name}
-			</div>
-			<div>
-				last name : {userData.last_name}
-			</div>
-			<div>
-				favorite color : {userData.favorite_color}
-			</div>
-			<div>
-				number of pets : {userData.number_of_pets}
-			</div>
 
-			<Link to={{ pathname: `/users`}} title="">
-				home
-			</Link>
+	useEffect(() => {
+		document.body.style.backgroundColor = userData.favorite_color
+		return () => {
+		document.body.style.backgroundColor = 'lightskyblue'	 }
+	}, [userData])
+
+	return (
+		<div className="card">
+			<div className="card-body">
+				<h1>{userData.last_name}, {userData.first_name}</h1>
+				<h4>
+					{userData.email}
+				</h4>
+
+				<div>
+					favorite color : {userData.favorite_color}
+				</div>
+				<div>
+					{
+						(userData.number_of_pets !== 1) 
+							? `${userData.number_of_pets} pets`
+							: `${userData.number_of_pets} pet`
+					}
+				</div>
+				<div>
+					{userData.id}
+				</div>
+			</div>
 		</div>
 	)
 }

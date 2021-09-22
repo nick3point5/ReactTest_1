@@ -1,4 +1,5 @@
 import React from 'react'
+import './main.css'
 import { withRouter } from "react-router";
 import {useFetchAll} from '../../API/fetchRequests';
 import UserTable from '../../components/UserComponent/UserTable'
