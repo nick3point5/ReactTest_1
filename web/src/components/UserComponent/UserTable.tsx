@@ -17,13 +17,17 @@ function UserTable(props:any) {
 			)
 		})
 		return (
-			<table className = 'table'>
-				<tr>
-					<th>Email</th>
-					<th>First Name</th>
-					<th>Last Name</th>
-				</tr>
+			<table className = 'table table-striped'>
+				<thead>
+					<tr>
+						<th scope="col">Email</th>
+						<th scope="col">First Name</th>
+						<th scope="col">Last Name</th>
+					</tr>
+				</thead>
+				<tbody>
 				{map}
+				</tbody>
 			</table>
 		)
 	}
