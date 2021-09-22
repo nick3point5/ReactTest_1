@@ -1,9 +1,8 @@
-import React,{useEffect, useState} from 'react'
+import React from 'react'
 import { withRouter, useParams } from "react-router";
 import UserDetails from '../../components/UserDetails/UserDetails';
-import userApiUrl from "../../routes/userAPI";
 import ErrorMessageComponent from '../../components/ErrorMessageComponent/ErrorMessageComponent';
-
+import {useFetchUser} from '../../API/fetchRequests';
 
 interface Params {
 	id: string;
@@ -19,35 +18,13 @@ const defaultUser ={
 }
 
 function User() {
-	const [userData, setUserData] = useState(defaultUser)
-	const [ errorMessage, setErrorMessage ] = useState()
 	const params:Params = useParams()
-
-	function fetchDataUser() {
-		fetch(`${userApiUrl}${params.id}`, {
-			method: 'GET'
-		})
-		.then(res => {
-				return res.json()
-		})
-		.then(res => {
-			setUserData({...userData,...res})
-		})
-	}
-	console.log(userData)
-	useEffect(() => {
-		fetchDataUser()
-		return () => {
-			
-		}
-	}, [])
-
-	if(!!errorMessage) return <ErrorMessageComponent message = {errorMessage}/>
-
+	const [data, error] = useFetchUser(defaultUser,params.id)
+	if(!!error) return <ErrorMessageComponent message = {error}/>
 
 	return (
 		<div className="">
-			<UserDetails userData = {userData}/>
+			<UserDetails userData = {data}/>
 		</div>
 	)
 }

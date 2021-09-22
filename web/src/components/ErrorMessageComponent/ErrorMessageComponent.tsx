@@ -5,7 +5,7 @@ interface Message {
 	message: string;
 }
 
-function ErrorMessageComponent(props:Message) {
+function ErrorMessageComponent(props:any) {
 	const message = props.message
 	return (
 		<div>

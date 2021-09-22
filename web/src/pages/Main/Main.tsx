@@ -1,38 +1,19 @@
-import React,{useEffect, useState} from 'react'
+import React from 'react'
 import { withRouter } from "react-router";
 import UserComponent from '../../components/UserComponent/UserComponent'
-import userApiUrl from "../../routes/userAPI";
 import ErrorMessageComponent from '../../components/ErrorMessageComponent/ErrorMessageComponent';
+import {useFetchAll} from '../../API/fetchRequests';
 
 function Main() {
-	const [ userDataAll, setUserDataAll ] = useState([])
-	const [ errorMessage, setErrorMessage ] = useState()
+	const [data, error] = useFetchAll([]) 
 
-	function fetchDataAll() {
-		fetch(`${userApiUrl}`, {
-			method: 'GET'
-		})
-		.then(res => {
-				return res.json()
-		})
-		.then(res => {
-			setUserDataAll(res)
-		})
-		.catch(error =>{
-			console.log(error)
-			setErrorMessage(error.toString())
-		})
+	if(!!error){
+		return <ErrorMessageComponent message = {error}/>
 	}
-
-	useEffect(() => {
-		fetchDataAll()
-	}, [])
-
-	if(!!errorMessage) return <ErrorMessageComponent message = {errorMessage}/>
 
 	return (
 		<div>
-			<UserComponent  userDataAll = {userDataAll}/>
+			<UserComponent  userDataAll = {data}/>
 		</div>
 	)
 }
