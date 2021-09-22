@@ -30,7 +30,7 @@ function UserComponent(props:any) {
 	
 	return (
 		<div>
-			{mapUsers(props.userData)}
+			{mapUsers(props.userDataAll)}
 		</div>
 	)
 }

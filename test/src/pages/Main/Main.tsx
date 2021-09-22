@@ -2,7 +2,6 @@ import React,{useEffect, useState} from 'react'
 import { withRouter } from "react-router";
 import UserComponent from '../../components/UserComponent/UserComponent'
 
-
 function Main() {
 	const [ userDataAll, setUserDataAll ] = useState([])
 
@@ -24,7 +23,7 @@ function Main() {
 
 	return (
 		<div>
-			<UserComponent  userData = {userDataAll}/>
+			<UserComponent  userDataAll = {userDataAll}/>
 		</div>
 	)
 }

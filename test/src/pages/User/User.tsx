@@ -1,7 +1,8 @@
 import React,{useEffect, useState} from 'react'
 import { withRouter, useParams } from "react-router";
-import { Link } from 'react-router-dom';
+import UserDetails from '../../components/UserDetails/UserDetails';
 import userApiUrl from "../../routes/userAPI";
+
 
 interface Params {
 	id: string;
@@ -40,29 +41,8 @@ function User() {
 	}, [])
 
 	return (
-		<div>
-			<div>
-				id : {userData.id}
-			</div>
-			<div>
-			email : {userData.email}
-			</div>
-			<div>
-			first name : {userData.first_name}
-			</div>
-			<div>
-			last name : {userData.last_name}
-			</div>
-			<div>
-			favorite color : {userData.favorite_color}
-			</div>
-			<div>
-			number of pets : {userData.number_of_pets}
-			</div>
-
-			<Link to={{ pathname: `/users`}} title="">
-						home
-			</Link>
+		<div className="">
+			<UserDetails userData = {userData}/>
 		</div>
 	)
 }
