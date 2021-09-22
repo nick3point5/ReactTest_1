@@ -1,7 +1,7 @@
 import React,{useEffect, useState} from 'react'
 import { withRouter, useParams } from "react-router";
 import { Link } from 'react-router-dom';
-import userApiUrl from "../routes/userAPI";
+import userApiUrl from "../../routes/userAPI";
 
 interface Params {
 	id: string;

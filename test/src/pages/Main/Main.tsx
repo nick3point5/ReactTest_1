@@ -1,6 +1,6 @@
 import React,{useEffect, useState} from 'react'
 import { withRouter } from "react-router";
-import UserComponent from '../components/UserComponent'
+import UserComponent from '../../components/UserComponent/UserComponent'
 
 
 function Main() {
