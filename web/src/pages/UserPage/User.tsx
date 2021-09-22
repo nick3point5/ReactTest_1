@@ -23,7 +23,7 @@ function User() {
 	}
 
 	return (
-		<div className = 'view center'>
+		<div className = 'content center'>
 			{render}
 		</div>
 	)

@@ -1,7 +1,5 @@
 .foot {
-	background-color: var(--color4);
 	bottom: 0rem;
 	padding: 0.625rem;
-	/* height: 100%; */
 	width: 100vw;
 }

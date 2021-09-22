@@ -19,7 +19,7 @@ function Main() {
 	}
 
 	return (
-		<div className = 'view center'>
+		<div className = 'content center'>
 			{render}
 		</div>
 	)
