@@ -1,8 +1,19 @@
 import React, {useEffect} from 'react'
 import './userDetails.css'
 import { Link } from 'react-router-dom';
+interface User {
+	"id": string,
+	"first_name": string,
+	"last_name": string,
+	"email": string,
+	"favorite_color": string,
+	"number_of_pets":  number
+}
+interface UserData {
+	"userData": User,
+}
 
-function UserDetails(props:any) {
+function UserDetails(props:UserData) {
 	const userData = props.userData
 
 	useEffect(() => {

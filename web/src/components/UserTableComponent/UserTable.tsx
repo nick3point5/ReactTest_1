@@ -2,9 +2,24 @@ import React from 'react'
 import './userTable.css'
 import { Link } from 'react-router-dom';
 
-function UserTable(props:any) {
-	function mapUsers(users:any) {
-		const map = users.map((user:any) => {
+interface UserDataAll {
+	"userDataAll": User[],
+}
+
+interface User {
+		"id": string,
+		"first_name": string,
+		"last_name": string,
+		"email": string,
+		"favorite_color": string,
+		"number_of_pets":  number
+}
+
+
+function UserTable(props:UserDataAll) {
+	console.log(props.userDataAll)
+	function mapUsers(users:User[]) {
+		const map = users.map((user:User) => {
 			return (
 				<tr>
 					<th>
