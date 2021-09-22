@@ -2,6 +2,7 @@ import React,{useEffect, useState} from 'react'
 import { withRouter, useParams } from "react-router";
 import UserDetails from '../../components/UserDetails/UserDetails';
 import userApiUrl from "../../routes/userAPI";
+import ErrorMessageComponent from '../../components/ErrorMessageComponent/ErrorMessageComponent';
 
 
 interface Params {
@@ -19,6 +20,7 @@ const defaultUser ={
 
 function User() {
 	const [userData, setUserData] = useState(defaultUser)
+	const [ errorMessage, setErrorMessage ] = useState()
 	const params:Params = useParams()
 
 	function fetchDataUser() {
@@ -39,6 +41,9 @@ function User() {
 			
 		}
 	}, [])
+
+	if(!!errorMessage) return <ErrorMessageComponent message = {errorMessage}/>
+
 
 	return (
 		<div className="">

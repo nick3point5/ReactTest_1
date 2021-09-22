@@ -6,8 +6,9 @@ import UserPage from '../pages/User/User';
 const routes = (
   <Switch>
 		<Route exact path='/users/' component={HomePage} />
+		<Route exact path='/' component={HomePage} />
 		<Route path='/users/:id' component={UserPage} />
-  </Switch>
+  </Switch> 
 )
 
 export default routes;
