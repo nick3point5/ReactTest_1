@@ -17,7 +17,6 @@ interface User {
 
 
 function UserTable(props:UserDataAll) {
-	console.log(props.userDataAll)
 	function mapUsers(users:User[]) {
 		const map = users.map((user:User) => {
 			return (
