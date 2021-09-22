@@ -1,10 +1,18 @@
 import React, { useState, useEffect } from 'react';
-import userApiUrl from './userAPI';
 
-function generateFetch(url:string) {
-	return (initState:any, params:any = '') => {
+let userApiUrl:string
+
+if (process.env.REACT_APP_PRODUCTION) {
+  userApiUrl = `${process.env.REACT_APP_API_URL}`
+} else {
+  userApiUrl = 'http://127.0.0.1:8081/api/users/'
+}
+
+function generateFetch(initState:any,url:string) {
+	return ( params:string = '') => {
 		const [ data, setData ] = useState(initState)
 		const [ error, setError ] = useState()
+		const [ loading, setLoading ] = useState(true)
 
 		function fetchData() {
 			fetch(`${url}${params}`, {
@@ -24,15 +32,28 @@ function generateFetch(url:string) {
 				console.log(error)
 				setError(error.toString())
 			})
-			console.log(error)
 		}
 
 		useEffect(() => {
 			fetchData()
 		}, [])
-		return [data, error]
+
+		useEffect(() => {
+			setLoading(false)
+		}, [setData,setError])
+
+		return [data, error, loading]
 	}
 }
 
-export const useFetchAll = generateFetch(userApiUrl)
-export const useFetchUser = generateFetch(userApiUrl)
+const defaultUser ={
+	"id": "",
+	"first_name": "",
+	"last_name": "",
+	"email": "",
+	"favorite_color": "",
+	"number_of_pets": 0
+}
+
+export const useFetchAll = generateFetch([],userApiUrl)
+export const useFetchUser = generateFetch(defaultUser,userApiUrl)
