@@ -1,17 +1,17 @@
-import React from 'react'
-import './errorMessage.css'
+import React from "react";
+import "./errorMessage.css";
 
 interface Message {
-	message: string;
+  message: string;
 }
 
-function ErrorMessage(props:Message) {
-	const message = props.message
-	return (
-		<div className="alert alert-danger" role="alert">
-			{message}
-		</div>
-	)
+function ErrorMessage(props: Message) {
+  const message = props.message;
+  return (
+    <div className="alert alert-danger" role="alert">
+      {message}
+    </div>
+  );
 }
 
-export default ErrorMessage
+export default ErrorMessage;
