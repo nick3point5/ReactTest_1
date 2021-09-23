@@ -1,5 +1,5 @@
 import React from "react";
-import "./loading.css";
+// import "./loading.css";
 import loadingSpinner from "../../assets/Spinner-1s-200px.svg";
 
 function Loading() {
