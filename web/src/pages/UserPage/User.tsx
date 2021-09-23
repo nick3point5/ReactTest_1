@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useMemo } from "react";
 import "./user.css";
 import { Params } from "../../types/types";
 import { withRouter, useParams } from "react-router";
@@ -10,17 +10,13 @@ import Loading from "../../components/LoadingComponent/Loading";
 function User() {
 	const params: Params = useParams();
 	const [userData, error, loading] = useFetchUser(params.id);
-	let render;
+	const jsx = useMemo(() => {
+		if (loading) return <Loading />;
+		if (!!error) return <ErrorMessage message={error} />;
+		return <UserDetails userData={userData} />;
+	}, [loading]);
 
-	if (!!error) {
-		render = <ErrorMessage message={error} />;
-	} else if (loading) {
-		render = <Loading />;
-	} else {
-		render = <UserDetails userData={userData} />;
-	}
-
-	return <div className="content center">{render}</div>;
+	return <div className="content center">{jsx}</div>;
 }
 
 export default withRouter(User);
