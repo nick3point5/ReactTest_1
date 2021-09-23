@@ -3,9 +3,7 @@ import "./userDetails.css";
 import { UserData } from "../../types/types";
 import paw from "../../assets/Paw_Print.svg";
 
-function UserDetails(props: UserData) {
-	const userData = props.userData;
-
+function UserDetails({ userData }: UserData) {
 	useEffect(() => {
 		document.body.style.backgroundColor = userData.favorite_color;
 		return () => {
