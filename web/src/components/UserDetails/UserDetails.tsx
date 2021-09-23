@@ -9,7 +9,7 @@ function UserDetails({ userData }: UserData) {
 		return () => {
 			document.body.style.backgroundColor = "lightskyblue";
 		};
-	}, [userData]);
+	}, []);
 
 	return (
 		<div className="card">
