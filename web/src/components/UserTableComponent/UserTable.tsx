@@ -32,13 +32,7 @@ function UserTable({ userDataAll }: UserDataAll) {
 		);
 	}
 
-	if (userDataAll.length > 10) {
-		document
-			.querySelector(".table-container")
-			?.classList.add("overflow-scroll");
-	}
-
-	return <div className="table-container">{mapUsers(userDataAll)}</div>;
+	return <div className={"table-container"+(userDataAll.length > 10?" overflow-scroll":"")}>{mapUsers(userDataAll)}</div>;
 }
 
 export default UserTable;
