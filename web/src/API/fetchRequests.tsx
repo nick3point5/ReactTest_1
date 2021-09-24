@@ -8,14 +8,14 @@ if (process.env.REACT_APP_PRODUCTION) {
   userApiUrl = "http://127.0.0.1:8081/api/users/";
 }
 
-function generateFetch(initState: any, url: string) {
-  return (params: string = "") => {
+function generateFetch(initState: any) {
+  return (params = "") => {
     const [data, setData] = useState(initState);
     const [error, setError] = useState();
     const loading = useRef(true);
 
     function fetchData() {
-      fetch(`${url}${params}`, {
+      fetch(`${userApiUrl}${params}`, {
         method: "GET",
       })
         .then((res) => {
@@ -40,7 +40,7 @@ function generateFetch(initState: any, url: string) {
 
     useEffect(() => {
       loading.current = false;
-    }, [setData, setError]);
+    }, [data, error]);
 
     return [data, error, loading.current];
   };
@@ -55,5 +55,5 @@ const defaultUser = {
   number_of_pets: 0,
 };
 
-export const useFetchAll = generateFetch([], userApiUrl);
-export const useFetchUser = generateFetch(defaultUser, userApiUrl);
+export const useFetchAll = generateFetch([]);
+export const useFetchUser = generateFetch(defaultUser);
