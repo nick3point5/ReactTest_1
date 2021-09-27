@@ -8,13 +8,15 @@ import Loading from "../../components/LoadingComponent/Loading";
 
 function Main() {
 	const [userDataAll, error, loading] = useFetchAll();
-	const jsx = useMemo(() => {
-		if (loading) return <Loading />;
-		if (!!error) return <ErrorMessage message={error} />;
-		return <UserTable userDataAll={userDataAll} />;
-	}, [loading]);
 
-	return <div className="content center">{jsx}</div>;
+	if (loading) return <Loading />;
+	if (!!error) return <ErrorMessage message={error} />; 
+
+	return (
+		<div className="content center">
+			<UserTable userDataAll={userDataAll} />
+		</div>
+	)
 }
 
 export default withRouter(Main);

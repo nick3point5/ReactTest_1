@@ -1,16 +1,18 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useContext } from "react";
 import "./userDetails.css";
 import { UserData } from "../../types/types";
 import paw from "../../assets/Paw_Print.svg";
+import { colorContext } from "../../App";
 
-function UserDetails({ userData, state, setState }:  any) {
+function UserDetails({ userData }: UserData) {
+	const setColor = useContext(colorContext)
 	
 	useEffect(() => {
-		document.body.style.backgroundColor = userData.favorite_color;
+		setColor(userData.favorite_color)
 		return () => {
-			document.body.style.backgroundColor = "lightskyblue";
+			setColor("lightskyblue")
 		};
-	}, []);
+	}, [setColor,userData]);
 
 	return (
 		<div className="card">

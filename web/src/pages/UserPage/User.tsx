@@ -8,16 +8,17 @@ import ErrorMessage from "../../components/ErrorMessageComponent/ErrorMessage";
 import Loading from "../../components/LoadingComponent/Loading";
 
 function User() {
-	const [state, setState] = useState("initialState")
 	const params: Params = useParams();
 	const [userData, error, loading] = useFetchUser(params.id);
-	const jsx = useMemo(() => {
-		if (loading) return <Loading />;
-		if (!!error) return <ErrorMessage message={error} />;
-		return <UserDetails userData={userData} state = {state} setState = {setState} />;
-	}, [loading]);
 
-	return <div className="content center">{jsx}</div>;
+	if (loading) return <Loading />;
+	if (!!error) return <ErrorMessage message={error} />; 
+
+	return (
+		<div className="content center">
+			<UserDetails userData={userData}/>;
+		</div>
+	)
 }
 
 export default withRouter(User);
