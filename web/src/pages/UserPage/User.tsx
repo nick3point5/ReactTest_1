@@ -16,7 +16,9 @@ function User() {
 
 	return (
 		<div className="content center">
-			<UserDetails userData={userData}/>;
+			{loading && <Loading />}
+			{!!error && <ErrorMessage message={error} />}
+			{!loading && !error && <UserDetails userData={userData}/>}
 		</div>
 	)
 }

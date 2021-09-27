@@ -9,14 +9,13 @@ import Loading from "../../components/LoadingComponent/Loading";
 function Main() {
 	const [userDataAll, error, loading] = useFetchAll();
 
-	if (loading) return <Loading />;
-	if (!!error) return <ErrorMessage message={error} />; 
-
 	return (
 		<div className="content center">
-			<UserTable userDataAll={userDataAll} />
+			{loading && <Loading />}
+			{!!error && <ErrorMessage message={error} />}
+			{!loading && !error && <UserTable userDataAll={userDataAll} />}
 		</div>
-	)
+	);
 }
 
 export default withRouter(Main);
