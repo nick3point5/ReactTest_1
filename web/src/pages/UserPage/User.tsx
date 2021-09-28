@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useMemo, useState } from "react";
 import "./user.css";
 import { Params } from "../../types/types";
 import { withRouter, useParams } from "react-router";
@@ -8,19 +8,19 @@ import ErrorMessage from "../../components/ErrorMessageComponent/ErrorMessage";
 import Loading from "../../components/LoadingComponent/Loading";
 
 function User() {
-  const params: Params = useParams();
-  const [userData, error, loading] = useFetchUser(params.id);
-  let render;
+	const params: Params = useParams();
+	const [userData, error, loading] = useFetchUser(params.id);
 
-  if (!!error) {
-    render = <ErrorMessage message={error} />;
-  } else if (loading) {
-    render = <Loading />;
-  } else {
-    render = <UserDetails userData={userData} />;
-  }
+	if (loading) return <Loading />;
+	if (!!error) return <ErrorMessage message={error} />; 
 
-  return <div className="content center">{render}</div>;
+	return (
+		<div className="content center">
+			{loading && <Loading />}
+			{!!error && <ErrorMessage message={error} />}
+			{!loading && !error && <UserDetails userData={userData}/>}
+		</div>
+	)
 }
 
 export default withRouter(User);

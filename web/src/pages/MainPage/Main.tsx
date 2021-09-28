@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useMemo } from "react";
 import "./main.css";
 import { withRouter } from "react-router";
 import { useFetchAll } from "../../API/fetchRequests";
@@ -8,17 +8,14 @@ import Loading from "../../components/LoadingComponent/Loading";
 
 function Main() {
 	const [userDataAll, error, loading] = useFetchAll();
-	let render;
 
-	if (!!error) {
-		render = <ErrorMessage message={error} />;
-	} else if (loading) {
-		render = <Loading />;
-	} else {
-		render = <UserTable userDataAll={userDataAll} />;
-	}
-
-	return <div className="content center">{render}</div>;
+	return (
+		<div className="content center">
+			{loading && <Loading />}
+			{!!error && <ErrorMessage message={error} />}
+			{!loading && !error && <UserTable userDataAll={userDataAll} />}
+		</div>
+	);
 }
 
 export default withRouter(Main);
